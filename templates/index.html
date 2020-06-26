@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Upperline Movie List!</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css?q={{ time }}">
+  </head>  
+    <body>
+      <h1>Upperline Movie List</h1>
+     <div class="movie-list">
+        <ul>
+          {% for entry in entry %}
+            <li>{{entry.title,entry.genre,entry.year}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <!-- <h3>Sort Movies By: Year<a href= {{sort_year}}>Click Here</a></h3> -->
+      <p>Want to add to our list? <a href= "/movie/new">Click Here</a> </p>
+       <p>Need an account? <a href="/signup">Sign up.</a> </p>
+      {%if session %}
+        <p>You are logged in as {{session['username']}}. <a href= "/logout">Logout</a> </p>
+      {% else %}
+      <h3>Log in: </h3>
+      <form action="/login" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="username" value="">
+        <label for "password">Password:</label>
+        <input type="password" name="password" value="">
+        <input type="submit" value="Log In">
+      </form>
+      <p>Need an account? <a href="/signup">Sign up.</a> </p>
+      {% endif %}
+    </body>
+</html>
